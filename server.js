@@ -1,5 +1,6 @@
 const { DiscussServiceClient } = require("@google-ai/generativelanguage");
 const { GoogleAuth } = require("google-auth-library");
+const { translate } = require("free-translate");
 
 const MODEL_NAME = "models/chat-bison-001";
 const API_KEY = "AIzaSyCJwWuBd1MWeVzCoY1ir2ng1XUrUK3vfLs";
@@ -48,7 +49,9 @@ sockserver.on("connection", (ws) => {
   ws.on("close", () => console.log("Client has disconnected!"));
   let messages = [];
 
-  ws.on("message", (data) => {
+  ws.on("message", async (data) => {
+    data = await translate(data, { from: "de", to: "en" });
+
     messages.push({ content: data });
 
     client
@@ -72,9 +75,12 @@ sockserver.on("connection", (ws) => {
           messages: messages,
         },
       })
-      .then((result) => {
-        console.log(result[0].candidates[0].content)
-        ws.send(result[0].candidates[0].content);
+      .then(async (result) => {
+        console.log(result[0].candidates[0].content);
+        let text = result[0].candidates[0].content;
+        text = await translate(text, { from: "en", to: "de" });
+
+        ws.send(text);
       });
   });
   ws.onerror = function () {
