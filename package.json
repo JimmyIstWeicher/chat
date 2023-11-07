@@ -1,5 +1,4 @@
 {
-  "type": "module",
   "name": "heyjimmy",
   "version": "1.0.0",
   "description": "",
@@ -14,6 +13,5 @@
     "ws": "^8.14.2",
     "@google-ai/generativelanguage": "^1.1.0",
     "google-auth-library": "^9.2.0",
-    "translate": "2.0.2"
   }
 }
