@@ -1,6 +1,6 @@
 const { DiscussServiceClient } = require("@google-ai/generativelanguage");
 const { GoogleAuth } = require("google-auth-library");
-
+const { translate } = require("free-translate");
 
 const MODEL_NAME = "models/chat-bison-001";
 const API_KEY = "AIzaSyCJwWuBd1MWeVzCoY1ir2ng1XUrUK3vfLs";
@@ -50,7 +50,11 @@ sockserver.on("connection", (ws) => {
   let messages = [];
 
   ws.on("message", (data) => {
-    messages.push({ content: data });
+    (async () => {
+      const translatedText = await translate(data, { to: "en" });
+      messages.push({ content: translatedText });
+      console.log(translatedText); // これはカッコいい！
+    })();
 
     client
       .generateMessage({
@@ -74,8 +78,14 @@ sockserver.on("connection", (ws) => {
         },
       })
       .then((result) => {
-        console.log(result[0].candidates[0].content)
-        ws.send(result[0].candidates[0].content);
+        (async () => {
+          const translatedText = await translate(
+            result[0].candidates[0].content,
+            { to: "de" }
+          );
+          ws.send(translatedText);
+          console.log(translatedText); // これはカッコいい！
+        })();
       });
   });
   ws.onerror = function () {
