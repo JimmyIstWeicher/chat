@@ -50,9 +50,8 @@ sockserver.on("connection", (ws) => {
   let messages = [];
 
   ws.on("message", async (data) => {
-    data = await translate(data, { from: "de", to: "en" });
 
-    messages.push({ content: data });
+    messages.push({ content: await translate(data, { from: "de", to: "en" }) });
 
     client
       .generateMessage({
@@ -77,10 +76,7 @@ sockserver.on("connection", (ws) => {
       })
       .then(async (result) => {
         console.log(result[0].candidates[0].content);
-        let text = result[0].candidates[0].content;
-        text = await translate(text, { from: "en", to: "de" });
-
-        ws.send(text);
+        ws.send(await translate(result[0].candidates[0].content, { from: "en", to: "de" }));
       });
   });
   ws.onerror = function () {
