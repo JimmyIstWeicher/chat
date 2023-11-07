@@ -49,6 +49,7 @@ sockserver.on("connection", (ws) => {
   let messages = [];
 
   ws.on("message", (data) => {
+    console.log(data)
     messages.push(data);
 
     client
