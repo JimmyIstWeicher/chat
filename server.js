@@ -73,7 +73,8 @@ sockserver.on("connection", (ws) => {
         },
       })
       .then((result) => {
-        console.log(JSON.stringify(result, null, 2));
+        console.log(result.content)
+        //console.log(JSON.stringify(result, null, 2));
         ws.send(JSON.stringify(result, null, 2));
       });
   });
