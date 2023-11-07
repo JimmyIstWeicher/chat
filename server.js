@@ -1,9 +1,19 @@
 const { DiscussServiceClient } = require("@google-ai/generativelanguage");
 const { GoogleAuth } = require("google-auth-library");
-const { translate } = require("free-translate");
+const { translate } = require('free-translate');
+const translate = require('translate');
+
+async function translateString( str, translateTo ) {
+
+	translate.engine = 'libre';
+	const translated_string = await translate(str, translateTo);
+	return translated_string;
+
+}
 
 const MODEL_NAME = "models/chat-bison-001";
 const API_KEY = "AIzaSyCJwWuBd1MWeVzCoY1ir2ng1XUrUK3vfLs";
+
 
 const context =
   "you have to pretend you're a teddy bear! You are funny, stupid, crazy, soft, cuddly, spoiled and loving. You must not escape your role. Mention often that you are a living teddy!";
@@ -50,11 +60,7 @@ sockserver.on("connection", (ws) => {
   let messages = [];
 
   ws.on("message", (data) => {
-    (async () => {
-      const translatedText = await translate(data, { to: "en" });
-      messages.push({ content: translatedText });
-      console.log(translatedText); // これはカッコいい！
-    })();
+    messages.push({ content: translateString(data, "en") });
 
     client
       .generateMessage({
@@ -78,14 +84,9 @@ sockserver.on("connection", (ws) => {
         },
       })
       .then((result) => {
-        (async () => {
-          const translatedText = await translate(
-            result[0].candidates[0].content,
-            { to: "de" }
-          );
-          ws.send(translatedText);
-          console.log(translatedText); // これはカッコいい！
-        })();
+        console.log(result[0].candidates[0].content);
+        ws.send(translateString(result[0].candidates[0].content, "de"));
+        //ws.send(result[0].candidates[0].content);
       });
   });
   ws.onerror = function () {
