@@ -73,7 +73,7 @@ sockserver.on("connection", (ws) => {
         },
       })
       .then((result) => {
-        console.log(result)
+        console.log(result[0].candidates.content)
         ws.send(JSON.stringify(result, null, 2));
       });
   });
