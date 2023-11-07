@@ -14,5 +14,7 @@
     "@google-ai/generativelanguage": "^1.1.0",
     "google-auth-library": "^9.2.0",
     "free-translate": "0.6.1"
+
+    
   }
 }
