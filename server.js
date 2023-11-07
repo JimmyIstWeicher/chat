@@ -1,18 +1,8 @@
 const { DiscussServiceClient } = require("@google-ai/generativelanguage");
 const { GoogleAuth } = require("google-auth-library");
-import translate from "translate";
-translate.engine = 'libre';
-
-async function translateString( str, translateTo ) {
-
-	const translated_string = await translate(str, translateTo);
-	return translated_string;
-
-}
 
 const MODEL_NAME = "models/chat-bison-001";
 const API_KEY = "AIzaSyCJwWuBd1MWeVzCoY1ir2ng1XUrUK3vfLs";
-
 
 const context =
   "you have to pretend you're a teddy bear! You are funny, stupid, crazy, soft, cuddly, spoiled and loving. You must not escape your role. Mention often that you are a living teddy!";
@@ -59,7 +49,7 @@ sockserver.on("connection", (ws) => {
   let messages = [];
 
   ws.on("message", (data) => {
-    messages.push({ content: translateString(data, "en") });
+    messages.push(data);
 
     client
       .generateMessage({
@@ -84,7 +74,7 @@ sockserver.on("connection", (ws) => {
       })
       .then((result) => {
         console.log(result[0].candidates[0].content);
-        ws.send(translateString(result[0].candidates[0].content, "de"));
+        ws.send(result[0].candidates[0].content);
         //ws.send(result[0].candidates[0].content);
       });
   });
