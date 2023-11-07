@@ -1,6 +1,5 @@
 const { DiscussServiceClient } = require("@google-ai/generativelanguage");
 const { GoogleAuth } = require("google-auth-library");
-const { translate } = require('free-translate');
 const translate = require('translate');
 
 async function translateString( str, translateTo ) {
