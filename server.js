@@ -47,11 +47,19 @@ sockserver.on("connection", (ws) => {
   ws.send("connection established");
   ws.on("close", () => console.log("Client has disconnected!"));
   let messages = [];
+  function hexToString(hex) {
+    let hexString = hex.toString(); // Falls der Hexadezimalwert als Zahl vorliegt, in String umwandeln
+    let str = "";
+    for (let i = 0; i < hexString.length; i += 2) {
+      str += String.fromCharCode(parseInt(hexString.substr(i, 2), 16));
+    }
+    return str;
+  }
 
   ws.on("message", (data) => {
-    console.log(data)
-  
-    messages.push(data);
+    console.log(data);
+
+    messages.push(hexToString(data));
     client
       .generateMessage({
         // required, which model to use to generate the result
