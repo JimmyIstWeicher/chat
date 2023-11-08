@@ -50,10 +50,8 @@ sockserver.on("connection", (ws) => {
 
   ws.on("message", (data) => {
     console.log(data)
-    const receivedString = data.toString('utf8');
-    console.log(receivedString);
   
-    messages.push(receivedString);
+    messages.push(data);
     client
       .generateMessage({
         // required, which model to use to generate the result
