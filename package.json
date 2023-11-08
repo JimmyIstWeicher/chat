@@ -1,17 +1,16 @@
 {
-  "name": "heyjimmy",
+  "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ws": "^8.14.2",
     "@google-ai/generativelanguage": "^1.1.0",
-    "google-auth-library": "^9.2.0"
+    "google-auth-library": "^9.2.0",
+    "ws": "^8.14.2"
   }
 }
