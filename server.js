@@ -17,7 +17,7 @@ sockserver.on("connection", (ws) => {
   const examples = [
     {
       input: {
-        content: "You need to ask for my name",
+        content: "You need to ask for my name, to make sure I am Emil. If a am not Emil, drive the person away with mean words, expeacially if its a bully. Ask for my name!",
       },
       output: {
         content: "whats your name?",
