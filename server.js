@@ -49,6 +49,7 @@ sockserver.on("connection", (ws) => {
       },
     })
     .then((result) => {
+      console.log(result)
       console.log(JSON.stringify(result[0].candidates[0].content, null, 2));
       ws.send(JSON.stringify(result[0].candidates[0].content, null, 2));
     });
