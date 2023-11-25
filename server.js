@@ -49,9 +49,8 @@ sockserver.on("connection", (ws) => {
       },
     })
     .then((result) => {
-      console.log(result)
-      console.log(JSON.stringify(result[0].candidates[0].content, null, 2));
-      ws.send(JSON.stringify(result[0].candidates[0].content, null, 2));
+      console.log(result[0].candidates[0].content);
+      ws.send(result[0].candidates[0].content);
     });
 
   ws.on("message", (data) => {
@@ -79,8 +78,8 @@ sockserver.on("connection", (ws) => {
         },
       })
       .then((result) => {
-        console.log(JSON.stringify(result[0].candidates[0].content, null, 2));
-        ws.send(JSON.stringify(result[0].candidates[0].content, null, 2));
+        console.log(result[0].candidates[0].content);
+        ws.send(result[0].candidates[0].content);
       });
   });
   ws.on("close", () => console.log("Client has disconnected!"));
