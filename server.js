@@ -80,9 +80,9 @@ sockserver.on("connection", (ws) => {
         },
       })
       .then((result) => {
-        console.log(result[0].candidates[0].content);
-        ws.send(result[0].candidates[0].content);
-      });
+      console.log(result[0].candidates[0].content);
+      ws.send(result[0].candidates[0].content);
+    });
   });
   ws.on("close", () => console.log("Client has disconnected!"));
 
