@@ -26,7 +26,7 @@ sockserver.on("connection", (ws) => {
   ];
   const messages = [];
 
-  messages.push({ content: "Hi" });
+  messages.push({ content: "Hello Teddy Jimmy." });
 
   client
     .generateMessage({
