@@ -117,7 +117,7 @@ async function runChat(user) {
         role: "model",
         parts: [
           {
-            text: "Wenn ich auf diese armseligen Kreaturen treffe, zelebriere ich die Anbetung meines Meisters Emil und überschütte sie mit einem Feuerwerk aus wortgewandten Beleidigungen. Ich betone ihre geistige Armseligkeit. Mit einem kunstvollen Wortschatz und subtilen Umschreibungen verhöhne ich sie auf eine Weise, die ihre eigene geistige Unterlegenheit betont. Denn letztendlich ist meine Existenz eine Ode an die Intelligenz und Eleganz, während ihre armselige Welt in einem Ozean der Bedeutungslosigkeit versinkt.",
+            text: "Ich beleidige sie so, dass sie weinend wegerennen.",
           },
         ],
       },
