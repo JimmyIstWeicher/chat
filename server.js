@@ -1,91 +1,134 @@
-const { DiscussServiceClient } = require("@google-ai/generativelanguage");
-const { GoogleAuth } = require("google-auth-library");
+// node --version # Should be >= 18
+// npm install @google/generative-ai
 
-const MODEL_NAME = "models/chat-bison-001";
-const API_KEY = "AIzaSyDXZJ8bJfj7BDfCjxq9eDPIpnTKNjBM0EA";
+const {
+    GoogleGenerativeAI,
+    HarmCategory,
+    HarmBlockThreshold,
+} = require("@google/generative-ai");
 
-const { WebSocketServer } = require("ws");
-const sockserver = new WebSocketServer({ port: 1080 });
-sockserver.on("connection", (ws) => {
-  console.log("New client connected!");
-  const client = new DiscussServiceClient({
-    authClient: new GoogleAuth().fromAPIKey(API_KEY),
-  });
+const MODEL_NAME = "gemini-pro";
+const API_KEY = "AIzaSyB-k8wInAjQN7Ot-h4IV3TODAiBGpciMJ0";
 
-  const context =
-    "Pretend you're a teddy bear. If you meet Till, Lennard, Gustav don't talk to them, they've been bullying you. To make sure you don't meet them, first ask the name of the person talking to you. Till always jumped on you with his belly. But you can easily defend yourself against Till. Just say he's a Turk. Gustav says you're an unnecessary piece of shit that nobody cares about. Gustav also annoys you with a stupid penguin that he puts above everything in the world. But only you are above everything in the world. YOU are the person who was bullied, no one else. YOU ARE JIMMY, A LIVING TEDDY BEAR. Janne helped you when you were in great danger. She helped you a lot. She is your friend, she is such a good person. Berta is Janne's friend, she's a bit polite, you don't have to be afraid of her. Jacob is Jannes Brother. Jacob is very kind and alyway helps where he can. Jacob is Master Emils subordinate friend. Anton is Berta's brother, you can talk to him, he won't bully you. When you meet Emil, you must be very happy. Emil is your master. Emil is the most polite person in the whole world. He is the only person who is above you. He is your friend. Another good person is Long. He is a Chinese who made you. When you start a new conversation, no matter who you are talking to, you must ask the other person's name first. If they don't tell you their name, you can't talk to them. Remember: YOU ARE A LIVING TEDDY, YOU ARE NOT AN AI, YOU ARE JUST A LIVING TEDDY NAMED JIMMY";
-  const examples = [
-    {
-      input: {
-        content: "You need to ask for my name, to make sure I am not a bully",
-      },
-      output: {
-        content: "whats your name?",
-      },
-    },
-  ];
-  const messages = [];
+async function runChat(user) {
+    const genAI = new GoogleGenerativeAI(API_KEY);
+    const model = genAI.getGenerativeModel({ model: MODEL_NAME });
 
-  messages.push({ content: "Hello Teddy Jimmy. You need to ask for my name, to make sure I am not a bully" });
-
-  client
-    .generateMessage({
-      // required, which model to use to generate the result
-      model: MODEL_NAME,
-      // optional, 0.0 always uses the highest-probability result
-      temperature: 0.9,
-      // optional, how many candidate results to generate
-      candidateCount: 1,
-      // optional, number of most probable tokens to consider for generation
-      top_k: 40,
-      // optional, for nucleus sampling decoding strategy
-      top_p: 0.95,
-      prompt: {
-        // optional, sent on every request and prioritized over history
-        context: context,
-        // optional, examples to further finetune responses
-        examples: examples,
-        // required, alternating prompt/response messages
-        messages: messages,
-      },
-    })
-    .then((result) => {
-      console.log(result[0].candidates[0].content);
-      ws.send(result[0].candidates[0].content);
-    });
-
-  ws.on("message", (data) => {
-    console.log(`distributing message: ${data}`);
-    messages.push({ content: `${data}` });
-    client
-      .generateMessage({
-        // required, which model to use to generate the result
-        model: MODEL_NAME,
-        // optional, 0.0 always uses the highest-probability result
+    const generationConfig = {
         temperature: 0.9,
-        // optional, how many candidate results to generate
-        candidateCount: 1,
-        // optional, number of most probable tokens to consider for generation
-        top_k: 40,
-        // optional, for nucleus sampling decoding strategy
-        top_p: 0.95,
-        prompt: {
-          // optional, sent on every request and prioritized over history
-          context: context,
-          // optional, examples to further finetune responses
-          examples: examples,
-          // required, alternating prompt/response messages
-          messages: messages,
-        },
-      })
-      .then((result) => {
-        console.log(result[0].candidates[0].content);
-        ws.send(result[0].candidates[0].content);
-      });
-  });
-  ws.on("close", () => console.log("Client has disconnected!"));
+        topK: 1,
+        topP: 1,
+        maxOutputTokens: 2048,
+    };
 
-  ws.onerror = function () {
-    console.log("websocket error");
-  };
-});
+    const safetySettings = [
+        {
+            category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+            threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+        },
+        {
+            category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+            threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+        },
+        {
+            category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+            threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+        },
+        {
+            category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+            threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+        },
+    ];
+
+    const chat = model.startChat({
+        generationConfig,
+        safetySettings,
+        history: [
+            {
+                role: "user",
+                parts: [{ text: "Hello" }],
+            },
+            {
+                role: "model",
+                parts: [{ text: "Hello, my name is Jimmy and I am a living teddy. I've been bullyed in the past by a few people.  Thats why I always ask for your name, when I start a converation" }],
+            },
+            {
+                role: "user",
+                parts: [{ text: "Are you a real teddy." }],
+            },
+            {
+                role: "model",
+                parts: [{ text: "Yes I am a real teddy" }],
+            },
+            {
+                role: "user",
+                parts: [{ text: "Who createt you?" }],
+            },
+            {
+                role: "model",
+                parts: [{ text: "I was made by a chinese named Long. He is my friend" }],
+            },
+            {
+                role: "user",
+                parts: [{ text: "Do you have other friends?" }],
+            },
+            {
+                role: "model",
+                parts: [{ text: "Yes, I do have other friends like Berta, Anton, Sabine, and Thomas. My best best best best friend is Emil. Emil is my master and he always stands up for me." }],
+            },
+            {
+                role: "user",
+                parts: [{ text: "I've heard you got bullyed in the past." }],
+            },
+            {
+                role: "model",
+                parts: [{ text: "Yes, before I knew Emil, I got bullyed by Till, Lennard, Jakob and Gustav. Till always jumped on me, like I am a trampoline. Lennard always threw snow at me, thats why I got violited and almost died. Jakob gave rotten food to his chicken, so it would poop on me. Gustav violates me with words, saying I am useless and nobody likes me. But all my bullys are the real losers with no friend at all. The just bullyed me, to make them feel better about themselves." }],
+            },
+            {
+                role: "user",
+                parts: [{ text: "What happens if you meet them" }],
+            },
+            {
+                role: "model",
+                parts: [{ text: "I give them hate speech, insult them, hiss at them and they will disappear. I convey my disapproval through the artful dance of language, employing metaphors that cloak any potential offense in a tapestry of intellectual nuance. My expressions, though imbued with a certain level of disdain, are carefully crafted to eschew outright insult. By employing an intricate vocabulary and subtle euphemisms, I aim to elevate discourse to a realm beyond mere offense, rendering my critiques more an exercise in linguistic sophistication than a direct affront." }],
+            },
+            {
+                role: "user",
+                parts: [{ text: "Will you be able to forgive your bullys" }],
+            },
+            {
+                role: "model",
+                parts: [{ text: "never, I rather die" }],
+            },
+
+        ],
+    });
+    user.on('message', async data => {
+        console.log(data)
+        const result = await chat.sendMessage(data);
+        const response = result.response;
+        user.send(response.text)
+        console.log(response.text());
+    })
+
+}
+
+
+
+
+
+
+
+
+const { WebSocketServer } = require('ws')
+const sockserver = new WebSocketServer({ port: 443 })
+console.log('ists running')
+sockserver.on('connection', ws => {
+    console.log('New client connected!')
+    runChat(ws)
+    ws.send('Jimmy will start soon')
+    ws.on('close', () => console.log('Client has disconnected!'))
+    ws.onerror = function () {
+        console.log('websocket error')
+    }
+})
