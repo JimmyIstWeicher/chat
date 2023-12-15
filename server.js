@@ -104,8 +104,9 @@ async function runChat(user) {
         ],
     });
     user.on('message', async data => {
+        data=data.toString()
         console.log(data)
-        const result = await chat.sendMessage(`${data}`);
+        const result = await chat.sendMessage(data);
         const response = result.response;
         user.send(response.text)
         console.log(response.text());
