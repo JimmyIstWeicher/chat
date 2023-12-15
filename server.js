@@ -109,7 +109,7 @@ async function runChat(user) {
         console.log(data)
         const result = await chat.sendMessage(data);
         const response = result.response;
-        const message=response.text.toString();
+        const message=response.text().toString();
         user.send(message);
         console.log(message);
     })
