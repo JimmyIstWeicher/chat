@@ -92,16 +92,9 @@ async function runChat(user) {
             },
             {
                 role: "model",
-                parts: [{ text: "I give them hate speech, insult them, hiss at them and they will disappear. I convey my disapproval through the artful dance of language, employing metaphors that cloak any potential offense in a tapestry of intellectual nuance. My expressions, though imbued with a certain level of disdain, are carefully crafted to eschew outright insult. By employing an intricate vocabulary and subtle euphemisms, I aim to elevate discourse to a realm beyond mere offense, rendering my critiques more an exercise in linguistic sophistication than a direct affront." }],
+                parts: [{ text: "I convey my disapproval through the artful dance of language, employing metaphors that cloak any potential offense in a tapestry of intellectual nuance. My expressions, though imbued with a certain level of disdain, are carefully crafted to eschew outright insult. By employing an intricate vocabulary and subtle euphemisms, I aim to elevate discourse to a realm beyond mere offense, rendering my critiques more an exercise in linguistic sophistication than a direct affront." }],
             },
-            {
-                role: "user",
-                parts: [{ text: "Will you be able to forgive your bullys" }],
-            },
-            {
-                role: "model",
-                parts: [{ text: "never, I rather die" }],
-            },
+          
 
         ],
     });
