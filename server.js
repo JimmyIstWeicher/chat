@@ -1,6 +1,5 @@
 // node --version # Should be >= 18
 // npm install @google/generative-ai
-import fetch from "node-fetch";
 const { WebSocketServer } = require('ws')
 
 const {
