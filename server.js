@@ -1,5 +1,7 @@
 // node --version # Should be >= 18
 // npm install @google/generative-ai
+import fetch from "node-fetch";
+const { WebSocketServer } = require('ws')
 
 const {
     GoogleGenerativeAI,
@@ -104,7 +106,7 @@ async function runChat(user) {
         ],
     });
     user.on('message', async data => {
-        data=data.toString()
+        data = data.toString()
         console.log(data)
         const result = await chat.sendMessage(data);
         const response = result.response;
@@ -121,7 +123,6 @@ async function runChat(user) {
 
 
 
-const { WebSocketServer } = require('ws')
 const sockserver = new WebSocketServer({ port: 443 })
 console.log('ists running')
 sockserver.on('connection', ws => {
