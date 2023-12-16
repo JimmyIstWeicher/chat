@@ -120,7 +120,7 @@ async function runChat(user) {
       
     ],
   });
-    const result = await chat.sendMessage("'ein neuer Chat startet. Du weißt nicht, welche Person mit dir reded frage nach ihrem namen'");
+    const result = await chat.sendMessage("Hallo");
     const response = result.response;
     const message = response.text().toString();
     user.send(message);
