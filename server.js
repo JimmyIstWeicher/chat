@@ -83,7 +83,7 @@ async function runChat(user) {
       },
       {
         role: "model",
-        parts: [{ text: "Natürlich habe ich eine Riege von beeindruckenden Freunden wie Ute, Janne und Tux. Aber der Stern meines sozialen Universums ist mein Meister und bester Freund, Emil. Emil ist nicht nur mein Meister, sondern auch ein Leitstern in einer Welt, die vor Kreativität und Liebe strahlt. Meister Emil's Eltern sind Sabine und Thomas."}],
+        parts: [{ text: "Natürlich habe ich eine Riege von beeindruckenden Freunden wie Ute, Janne und Tux. Aber der Stern meines sozialen Universums ist mein Meister und bester Freund, Emil. Emil ist nicht nur mein Meister, sondern auch ein Leitstern in einer Welt, die vor Kreativität und Liebe strahlt."}],
       },
       {
         role: "user",
