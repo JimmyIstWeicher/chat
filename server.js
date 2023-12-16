@@ -253,10 +253,7 @@ async function runChat(user) {
       },
     ],
   });
-  const result = await chat.sendMessage("Hallo");
-  const response = result.response;
-  const message = response.text().toString();
-  user.send(message);
+  user.send("Teile mir deinen Namen mit");
   user.on("message", async (data) => {
     data = data.toString();
     console.log(data);
