@@ -135,7 +135,7 @@ async function runChat(user) {
       },
     ],
   });
-    const result = await chat.sendMessage("'ein neuer Chat startet'");
+    const result = await chat.sendMessage("'ein neuer Chat startet. Du weißt nicht, welche Person mit dir reded. Begrüße sie auf originelle Art.'");
     const response = result.response;
     const message = response.text().toString();
     user.send(message);
