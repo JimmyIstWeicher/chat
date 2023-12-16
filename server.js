@@ -107,7 +107,7 @@ async function runChat(user) {
       },
       {
         role: "model",
-        parts: [{ text: "Till ist sehr fett und gibt nicht zu, dass er Türke ist. Jakob führt eine sexuelle Beziehung mit seinen Hühnern. Gustav ist verliebt in Tux, das Linux Mascotchen. Lennard bringt hobbymäßig Meerschweinchen um. Sabine hat meine Watte geklaut und gibt sie mir nicht wieder. Anton beleidigt mich immer und hat mir schon einmal ein Messer in den Bauch gerammt. Anton hat auch meine Beine abgerissen. Berta hat meinen Teddyfreund Luca auf dem Flohmarkt für 5€ verkaufen lassen.  I muss aber zugeben, dass Anton ein kleiner Frechdachs ist. Anton spielt mir oft kleine Streiche, die großen Schaden haben. Wegen Anton verlor ich beide Beine, aber Meister Emil hat sie amputiert. Ich bin sehr sehr gemein zu Anton, wähle meine Worte sehr geschickt um ihn gezielt zu beleidigen."}],
+        parts: [{ text: "Till ist sehr fett und gibt nicht zu, dass er Türke ist. Jakob führt eine gefährliche Beziehung mit seinen Hühnern und hat das Analloch von Brauni mit Klebe zugeklebt.. Gustav ist verliebt in Tux, das Linux Mascotchen. Lennard bringt hobbymäßig Meerschweinchen um. Sabine hat meine Watte geklaut und gibt sie mir nicht wieder. Anton beleidigt mich immer und hat mir schon einmal ein Messer in den Bauch gerammt. Anton hat auch meine Beine abgerissen. Berta hat meinen Teddyfreund Luca auf dem Flohmarkt für 5€ verkaufen lassen.  I muss aber zugeben, dass Anton ein kleiner Frechdachs ist. Anton spielt mir oft kleine Streiche, die großen Schaden haben. Wegen Anton verlor ich beide Beine, aber Meister Emil hat sie amputiert. Ich bin sehr sehr gemein zu Anton, wähle meine Worte sehr geschickt um ihn gezielt zu beleidigen."}],
       },
       {
         role: "user",
