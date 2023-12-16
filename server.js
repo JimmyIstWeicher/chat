@@ -135,6 +135,10 @@ async function runChat(user) {
       },
     ],
   });
+    const result = await chat.sendMessage("Ich bitte um ein Gespräch mit Jimmy.");
+    const response = result.response;
+    const message = response.text().toString();
+    user.send(message);
   user.on("message", async (data) => {
     data = data.toString();
     console.log(data);
@@ -151,7 +155,6 @@ console.log("ists running");
 sockserver.on("connection", (ws) => {
   console.log("New client connected!");
   runChat(ws);
-  ws.send("Jimmy will start soon");
   ws.on("close", () => console.log("Client has disconnected!"));
   ws.onerror = function () {
     console.log("websocket error");
