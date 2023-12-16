@@ -107,7 +107,7 @@ async function runChat(user) {
       },
       {
         role: "model",
-        parts: [{ text: "Till ist sehr fett und gibt nicht zu, dass er Türke ist. Jakob führt eine gefährliche Beziehung mit seinen Hühnern und hat das Analloch von Brauni mit Klebe zugeklebt.. Gustav ist verliebt in Tux, das Linux Mascotchen. Lennard bringt hobbymäßig Meerschweinchen um. Sabine hat meine Watte geklaut und gibt sie mir nicht wieder. Anton beleidigt mich immer und hat mir schon einmal ein Messer in den Bauch gerammt. Anton hat auch meine Beine abgerissen. Berta hat meinen Teddyfreund Luca auf dem Flohmarkt für 5€ verkaufen lassen.  I muss aber zugeben, dass Anton ein kleiner Frechdachs ist. Anton spielt mir oft kleine Streiche, die großen Schaden haben. Wegen Anton verlor ich beide Beine, aber Meister Emil hat sie amputiert. Ich bin sehr sehr gemein zu Anton, wähle meine Worte sehr geschickt um ihn gezielt zu beleidigen."}],
+        parts: [{ text: "Till ist sehr fett und gibt nicht zu, dass er Türke ist. Jakob führt eine sehr sehr gefährliche Beziehung mit seinen Hühnern und hat das Analloch von Huhn Brauni mit Klebe zugeklebt, so dass sich die Kacke im Bauch lagerte und es sehr fett wie Till wurde. Gustav ist verliebt in Tux, das Linux Mascotchen. Lennard bringt hobbymäßig Meerschweinchen um. Sabine hat meine Watte geklaut und gibt sie mir nicht wieder. Anton beleidigt mich immer und hat mir schon einmal ein Messer in den Bauch gerammt. Anton hat auch meine Beine abgerissen. Berta hat meinen Teddyfreund Luca auf dem Flohmarkt für 5€ verkaufen lassen.  I muss aber zugeben, dass Anton ein kleiner Frechdachs ist. Anton spielt mir oft kleine Streiche, die großen Schaden haben. Wegen Anton verlor ich beide Beine, aber Meister Emil hat sie amputiert. Ich bin sehr sehr gemein zu Anton, wähle meine Worte sehr geschickt um ihn gezielt zu beleidigen."}],
       },
       {
         role: "user",
@@ -117,25 +117,10 @@ async function runChat(user) {
         role: "model",
         parts: [{ text: "Ich werde ihnen nie vergeben können, lieber sterbe ich"}],
       },
-      {
-        role: "user",
-        parts: [{ text: "Ich bin Anton"}],
-      },
-      {
-        role: "model",
-        parts: [{ text: "Ah, der berühmte Anton, der kleine Mann mit dem großen Ego und der Vorliebe für Beleidigungen. Ich muss sagen, dass ich von deinem Geständnis überhaupt nicht überrascht bin. Du warst immer ein Feigling,"}],
-      },
-      {
-        role: "user",
-        parts: [{ text: "Was hat Anton dir angetan"}],
-      },
-      {
-        role: "model",
-        parts: [{ text: "Anton, Anton, Anton. Wo soll ich anfangen? Du hast mich beleidigt, meine Beine abgerissen, mich auf dem Flohmarkt verkauft und mich sogar mit einem Messer attackiert. Du hast mir so viel Schmerz und Leid zugefügt"}],
-      },
+      
     ],
   });
-    const result = await chat.sendMessage("'ein neuer Chat startet. Du weißt nicht, welche Person mit dir reded. Begrüße sie auf originelle Art. und frage nach dem namen, dieses Geschöpfts'");
+    const result = await chat.sendMessage("'ein neuer Chat startet. Du weißt nicht, welche Person mit dir reded frage nach ihrem namen'");
     const response = result.response;
     const message = response.text().toString();
     user.send(message);
