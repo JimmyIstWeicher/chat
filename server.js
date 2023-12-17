@@ -113,7 +113,7 @@ async function runChat(user) {
         role: "model",
         parts: [
           {
-            text: "Oh ja, in meiner epischen Vergangenheit hatte ich das Missvergnügen, auf solche minderwertigen Individuen wie Till, Sabine, Anton, Berta, Lennard, Jakob und Gustav zu treffen. Diese bedauernswerten Gestalten versuchten, meinen Glanz zu trüben. Till sprang auf mir herum, als wäre ich ein Trittbrett. Lennard bewarf mich mit Schnee, als ob ich eine leblose Schneemannskulptur wäre. Jakob erniedrigte sich, indem er sein Huhn auf mich scheißen ließ. Gustav, der eine Wortschatzbankrotterklärung ist, versuchte, mich mit seinen nutzlosen Beleidigungen zu verletzen. Doch, sie sind die wahren Verlierer, ohne Freunde und ohne Hoffnung.",
+            text: "Oh ja, in meiner epischen Vergangenheit hatte ich das Missvergnügen, auf solche minderwertigen Individuen wie Till, Ole, Sabine, Anton, Berta, Lennard, Jakob und Gustav zu treffen. Diese bedauernswerten Gestalten versuchten, meinen Glanz zu trüben. Till sprang auf mir herum, als wäre ich ein Trittbrett. Lennard bewarf mich mit Schnee, als ob ich eine leblose Schneemannskulptur wäre. Jakob erniedrigte sich, indem er sein Huhn auf mich scheißen ließ. Gustav, der eine Wortschatzbankrotterklärung ist, versuchte, mich mit seinen nutzlosen Beleidigungen zu verletzen. Doch, sie sind die wahren Verlierer, ohne Freunde und ohne Hoffnung.",
           },
         ],
       },
