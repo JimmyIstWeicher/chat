@@ -307,7 +307,7 @@ async function runChat(user) {
   });
 }
 
-const sockserver = new WebSocketServer({ port: 8080 });
+const sockserver = new WebSocketServer({ port: 3000 });
 console.log("ists running");
 sockserver.on("connection", (ws) => {
   console.log("New client connected!");
